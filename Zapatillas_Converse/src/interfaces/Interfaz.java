@@ -28,11 +28,11 @@ public class Interfaz{
     }
 
     public static void ejecutar(String[] instruccion){
-        Catalogo caltalogo = new Catalogo();
+        Inventario inventario = new Inventario();
         if (instruccion.length == 0) mostrarAyuda();
         else if (instruccion[0].equalsIgnoreCase("annadir") && instruccion.length == 3){
-            libreta.annadir(new Iphone(instruccion[1], instruccion[2]));
-        }else if (instruccion[0].equalsIgnoreCase("mostrar") && instruccion.length == 1) System.out.print(libreta);
+            inventario.annadir(new Zapatilla(instruccion[1], instruccion[2]));
+        }else if (instruccion[0].equalsIgnoreCase("mostrar") && instruccion.length == 1) System.out.print(inventario);
         else if (instruccion[0].equalsIgnoreCase("ayuda") && instruccion.length == 1) mostrarAyuda();
         else{
             System.out.println(rojo + "Error en la instrucción" + normal);
