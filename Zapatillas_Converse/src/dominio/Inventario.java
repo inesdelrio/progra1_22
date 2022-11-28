@@ -1,56 +1,81 @@
-package dominio; 
+package dominio;
 
-import java.io.File; 
-import java.io.FIleNotFounfException; 
-import java.io.FileWriter; 
-import java.io.IOException; 
-import java.util.ArrayList; 
-import java.util.Scanner; 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-/*public class Inventario{
-	private String nombreFichero = "zapatillas.txt"; 
-	private ArrayList<Zapatilla> zapatilla = new ArrayList<>(); 
 
-	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder(); 
-		for(Zapatilla zapatilla : zapatillas){
-			sb.append(zapatilla + "\n"); 
-		}
-		return sb.toString(); 
-	}
+public class Inventario {
+    private ArrayList<Zapatilla> zapatillas = new ArrayList<>();
+    private String nombreFichero = "zapatillas.txt";
 
-	public Inventario(){
-		try{
-			File fichero = new File(nombreFichero); 
-			fichero.createNewFile() ;
-			Scanner sc = new Scannner(fichero); 
-			while(sc.hasNext()){
-				Zapatilla zapatilla = new Zapatilla(); 
-				zapatilla.setColor(sc.nextLine());
+    /**
+     * Método para poder cargar los datos del fichero
+     */
+    public Inventario() {
+        try {
+            File fichero = new File(nombreFichero);
+            fichero.createNewFile();
+            Scanner sc = new Scanner(fichero);
+            while (sc.hasNext()) {
+                Zapatilla zapatilla = new Zapatilla();
+                zapatilla.setModelo(sc.nextLine());
+                zapatilla.setColor(sc.nextLine());
+                zapatilla.setPrecio(sc.nextInt());
+                sc.nextLine();
+                zapatilla.setTalla(sc.nextInt());
+                sc.nextLine();
+                zapatillas.add(zapatilla);
+            }
+        } catch (IOException exception) {
+            System.err.println(exception);
+        }
+    }
 
-*/
+    /**
+     * Método para añadir una zapatilla
+     *
+     * @param modelo Modelo de la sudadera
+     * @param color  Color de la sudadera
+     * @param precio Precio de la sudadera
+     * @param talla  Talla de la sudadera
+     */
+    public void addZapatillas(String modelo, String color, int precio, int talla) {
+        Zapatilla zapatilla = new Zapatilla(modelo, color, precio, talla);
+        zapatillas.add(zapatilla);
+        this.volcarZapatillas();
+    }
 
-public class Inventario{
-	private ArrayList<Zapatilla> zapatillas = new ArrayList<>(); 
+    /**
+     * Método para añadir una zapatilla al fichero txt
+     */
+    private void volcarZapatillas() {
+        try {
+            FileWriter fw = new FileWriter(nombreFichero);
+            for (Zapatilla zapatilla : zapatillas) {
+                fw.write(zapatilla.getModelo() + "\n");
+                fw.write(zapatilla.getColor() + "\n");
+                fw.write(zapatilla.getPrecio() + "\n");
+                fw.write(zapatilla.getTalla() + "\n");
+            }
+            fw.close();
+        } catch (IOException exception) {
+            System.err.println(exception);
+        }
+    }
 
-	public void addZapatilla() throws IOException{
-		BufferedReader input = new BufferedReader(new InputStreamReader(System.in)); 
-		Zapatilla newZapatilla = new Zapatilla(); 
-		System.out.print("Modelo de las zapatillas: "); 
-		newZapatilla.setModelo(input.readLine()); 
-		System.out.print("Color de las zapatillas: "); 
-		newZapatilla.setColor(input.readLine()); 
-		System.out.print("Precio de las zapatillas: "); 
-		newZapatilla.setPrecio(Integer.parseInt(input.readLine())); 
-		System.out.print("Talla de las zapatillas: "); 
-		newZapatilla.setTalla(Integer.parseInt(input.readLine())); 
-	}
-
-	public void getZapatillas(){
-		for (Zapatilla zapatilla : zapatillas){
-			System.out.println(zapatilla); 
-		}
-	}
+    /**
+     * Método para devolver la información en formato String
+     *
+     * @return Información en formato string
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Zapatilla zapatilla : zapatillas) {
+            sb.append(zapatilla + "\n");
+        }
+        return sb.toString();
+    }
 }
 
