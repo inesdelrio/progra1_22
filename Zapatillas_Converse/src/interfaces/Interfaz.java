@@ -19,7 +19,7 @@ public class Interfaz {
         System.out.println("\tGestiona un catálogo de Converse. Permite añadir y mostrar zapatillas Converse.");
         System.out.println(negrita + "\nEJEMPLOS" + normal);
         System.out.println("\tEjemplo 1. Añadido de unas zapatillas:\n");
-        System.out.println(negrita + "\t\tjava -jar annadir Converse altas negras 70 37\n" + normal);
+        System.out.println(negrita + "\t\tjava -jar zapatillas.jar annadir Converse altas negras 70 37\n" + normal);
         System.out.println("\tEjemplo 2. Listado de zapatillas\n");
         System.out.println(negrita + "\t\tjava -jar zapatillas.jar mostrar" + normal);
         System.out.println("\t\nEjemplo 3. Muestra esta ayuda:\n");
