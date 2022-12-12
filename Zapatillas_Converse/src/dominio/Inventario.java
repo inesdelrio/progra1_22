@@ -40,10 +40,67 @@ public class Inventario {
      * @param precio Precio de la sudadera
      * @param talla  Talla de la sudadera
      */
-    public void addZapatillas(String modelo, String color, int precio, int talla) {
+	    public void addZapatillas(String modelo, String color, int precio, int talla) {
         Zapatilla zapatilla = new Zapatilla(modelo, color, precio, talla);
         zapatillas.add(zapatilla);
         this.volcarZapatillas();
+    }
+
+
+    /**
+     * @param zapatillaABorrar
+     */
+    public void borrarZapatilla(Zapatilla zapatillaABorrar) {
+        String modelo = zapatillaABorrar.getModelo();
+        String color = zapatillaABorrar.getColor();
+        int precio = zapatillaABorrar.getPrecio();
+        int talla = zapatillaABorrar.getTalla();
+        int i = 0;
+        boolean encontrado = false;
+        while (i <= zapatillas.size() && !encontrado) {
+            if (zapatillas.get(i).getModelo().equals(modelo) && zapatillas.get(i).getColor().equals(color)
+                    && zapatillas.get(i).getPrecio() == precio && zapatillas.get(i).getTalla() == talla) {
+                encontrado = true;
+                break;
+            }
+            i++;
+        }
+        if (encontrado) {
+            zapatillas.remove(i);
+            volcarZapatillas();
+            System.out.println("Se ha eliminado correctamente");
+        } else {
+            System.out.println("No se ha encontrado la zapatilla");
+        }
+    }
+
+    /**
+     *
+     * @param televisionAntigua
+     * @param televisionNueva
+     */
+    public void reemplazarZapatilla(Zapatilla zapatillaAntigua, Zapatilla zapatillaNueva) {
+        String modelo = zapatillaAntigua.getModelo();
+        String color = zapatillaAntigua.getColor();
+        int precio = zapatillaAntigua.getPrecio();
+        int talla = zapatillaAntigua.getTalla();
+        int i = 0;
+        boolean encontrado = false;
+        while (i <= zapatillas.size() && !encontrado) {
+            if (zapatillas.get(i).getModelo().equals(modelo) && zapatillas.get(i).getColor().equals(color)
+                    && zapatillas.get(i).getPrecio() == precio && zapatillas.get(i).getTalla() == talla) {
+                encontrado = true;
+                break;
+            }
+            i++;
+        }
+        if (encontrado) {
+            zapatillas.set(i, zapatillaNueva);
+            volcarZapatillas();
+            System.out.println("Se ha reemplazado");
+        } else {
+            System.out.println("No se ha encontrado la zapatilla");
+        }
     }
 
     /**
@@ -78,4 +135,7 @@ public class Inventario {
         return sb.toString();
     }
 }
+
+
+
 

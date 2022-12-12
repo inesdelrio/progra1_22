@@ -1,10 +1,5 @@
 package dominio;
 
-
-	/**
- 	* Clase que determina las caracteristicas del objeto principal. 
-	 */
-
 public class Zapatilla {
     private String modelo;
     private String color;
@@ -55,15 +50,10 @@ public class Zapatilla {
         return this.talla;
     }
 
-    /**
-     * Método que devuelve la información del objeto. 
-     */
-
     @Override
     public String toString() {
         return "Modelo: " + getModelo() + " Color: " +
                 getColor() + " Precio: " + getPrecio() + " Talla: " + getTalla();
     }
 }
-
 
